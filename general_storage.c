@@ -1,4 +1,4 @@
-#include "html_gpio_storage.h"
+#include "general_storage.h"
 
 #ifdef __cplusplus
 extern "C" {

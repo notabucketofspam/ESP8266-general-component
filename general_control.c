@@ -1,4 +1,4 @@
-#include "html_gpio_control.h"
+#include "general_control.h"
 
 #ifdef __cplusplus
 extern "C" {

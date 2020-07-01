@@ -1,7 +1,7 @@
-#ifndef HTML_GPIO_STORAGE_H
-#define HTML_GPIO_STORAGE_H
+#ifndef GENERAL_STORAGE_H
+#define GENERAL_STORAGE_H
 
-#include "html_gpio_include.h"
+#include "general_include.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,7 +15,7 @@ extern "C" {
     .format_if_mount_failed = false,      \
 }
 
-static const char *TAG = "html_gpio_storage";
+static const char *TAG = "general_storage";
 /* Operation to perform on storage */
 typedef enum {
   STORAGE_APPEND      = 'a',
@@ -37,4 +37,4 @@ esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_m
 }
 #endif
 
-#endif // HTML_GPIO_STORAGE_H
+#endif // GENERAL_STORAGE_H

@@ -1,5 +1,5 @@
-#ifndef HTML_GPIO_INCLUDE_H
-#define HTML_GPIO_INCLUDE_H
+#ifndef GENERAL_INCLUDE_H
+#define GENERAL_INCLUDE_H
 
 #include <stddef.h>
 #include <stdio.h>
@@ -25,12 +25,8 @@
 #include "esp_wifi.h"
 #include "tcpip_adapter.h"
 
-#ifdef SDKCONFIG_H_NOT_FOUND
-#include "../build/include/sdkconfig.h"
-#endif
-
 #ifndef __ESP_FILE__
 #define __ESP_FILE__ __FILE__
 #endif
 
-#endif // HTML_GPIO_INCLUDE_H
+#endif // GENERAL_INCLUDE_H

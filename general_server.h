@@ -1,7 +1,7 @@
-#ifndef HTML_GPIO_SERVER_H
-#define HTML_GPIO_SERVER_H
+#ifndef GENERAL_SERVER_H
+#define GENERAL_SERVER_H
 
-#include "html_gpio_include.h"
+#include "general_include.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -11,7 +11,7 @@ extern "C" {
 #define SERVER_DEFAULT_CONFIG() \
   HTTPD_DEFAULT_CONFIG()        
 
-static const char *TAG = "html_gpio_server";
+static const char *TAG = "general_server";
 /* index.html of HTTPD server  */
 static FILE *s_index_html;
 /* Central HTTPD server */
@@ -30,4 +30,4 @@ static esp_err_t base_path_get_handler(httpd_req_t *req);
 }
 #endif
 
-#endif //HTML_GPIO_SERVER_H
+#endif //GENERAL_SERVER_H

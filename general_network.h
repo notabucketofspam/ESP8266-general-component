@@ -1,7 +1,7 @@
-#ifndef HTML_GPIO_NETWORK_H
-#define HTML_GPIO_NETWORK_H
+#ifndef GENERAL_NETWORK_H
+#define GENERAL_NETWORK_H
 
-#include "html_gpio_include.h"
+#include "general_include.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -16,7 +16,7 @@ extern "C" {
   }                                   \
 }
 
-static const char *TAG = "html_gpio_network";
+static const char *TAG = "general_network";
 /* Event handler for WiFi connection */
 static EventGroupHandle_t s_connection_event_group;
 /* Nnetwork connection settings */
@@ -31,4 +31,4 @@ static void connection_receive_ip(void *arg, esp_event_base_t event_base, int32_
 }
 #endif
 
-#endif // HTML_GPIO_NETWORK_H
+#endif // GENERAL_NETWORK_H

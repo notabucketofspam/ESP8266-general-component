@@ -1,4 +1,4 @@
-#include "html_gpio_network.h"
+#include "general_network.h"
 
 #ifdef __cplusplus
 extern "C" {

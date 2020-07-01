@@ -1,7 +1,7 @@
-#ifndef HTML_GPIO_CONTROL_H
-#define HTML_GPIO_CONTROL_H
+#ifndef GENERAL_CONTROL_H
+#define GENERAL_CONTROL_H
 
-#include "html_gpio_include.h"
+#include "general_include.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,7 +36,7 @@ extern "C" {
   },                                    \
 }
 
-static const char *TAG = "html_gpio_control";
+static const char *TAG = "general_control";
 /* Persistent map of pin states */
 static FILE *s_gpio_state;
 /* Control pin state */
@@ -52,4 +52,4 @@ esp_err_t setup_control(const control_config_t *control_config);
 }
 #endif
 
-#endif // HTML_GPIO_CONTROL_H
+#endif // GENERAL_CONTROL_H
