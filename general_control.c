@@ -16,9 +16,13 @@ esp_err_t setup_control(const control_config_t *control_config) {
 }
 
 esp_err_t read_persistent_gpio_state(void) {
+  bool pin_state;
   uint8_t state_index;
-  for (state_index = 0; state_index < 17; ++state_index)
-    ESP_ERROR_CHECK(gpio_set_level(state_index, fgetc(s_gpio_state) == '1'));
+  for (state_index = 0; state_index < 17; ++state_index) {
+    pin_state = (fgetc(s_gpio_state) == '1');
+    ESP_ERROR_CHECK(gpio_set_level(state_index, pin_state));
+    s_gpio_state_mem[state_index] = pin_state;
+  }
   rewind(s_gpio_state);
   return ESP_OK;
 }

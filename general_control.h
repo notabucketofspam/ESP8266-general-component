@@ -39,6 +39,8 @@ extern "C" {
 static const char *TAG = "general_control";
 /* Persistent map of pin states */
 static FILE *s_gpio_state;
+/* Pin states stored in memory */
+static uint8_t s_gpio_state_mem[17];
 /* Control state of specific pin */
 typedef struct {
   bool persistent_pin_state;        // Use gpio_state file?
