@@ -39,7 +39,7 @@ extern "C" {
 static const char *TAG = "general_control";
 /* Persistent map of pin states */
 static FILE *s_gpio_state;
-/* Control pin state */
+/* Control state of specific pin */
 typedef struct {
   bool persistent_pin_state;        // Use gpio_state file?
   gpio_config_t control_list[17];   // Collection of GPIO configs, one for each pin
@@ -47,6 +47,8 @@ typedef struct {
 
 /* Initialize GPIO control */
 esp_err_t setup_control(const control_config_t *control_config);
+/* Set pin states based on persistent file */
+esp_err_t read_persistent_gpio_state(void);
 
 #ifdef __cplusplus
 }

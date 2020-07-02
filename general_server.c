@@ -42,9 +42,11 @@ static esp_err_t base_path_get_handler(httpd_req_t *req) {
   do {
     fgets(index_html_get_buf, CONFIG_HTTPD_RESP_BUF_SIZE, s_index_html);
     ESP_ERROR_CHECK(httpd_resp_send_chunk(req, index_html_get_buf, CONFIG_HTTPD_RESP_BUF_SIZE));
+    memset(index_html_get_buf, 0x00, sizeof(index_html_get_buf));
     fgetpos(s_index_html, file_pos);
   } while (file_pos != EOF);
   rewind(s_index_html);
+  ESP_ERROR_CHECK(httpd_resp_send(req, NULL, 0));
   return ESP_OK;
 }
 
