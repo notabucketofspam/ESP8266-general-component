@@ -1,5 +1,24 @@
-  menu "HTML GPIO configuration"
-  
+menu "ESP8266-general-include configuration"
+
+  menu "Control configuration"
+
+    choice ESP_BOARD_TYPE
+      prompt "ESP board type"
+      default ESP_BOARD_NODEMCU
+
+      config ESP_BOARD_NODEMCU
+        bool "NodeMCU"
+      config ESP_BOARD_WEMOS_D1_MINI
+        bool "Wemos D1 Mini"
+      config ESP_BOARD_ESP_01S
+        bool "ESP-01S"
+      config ESP_BOARD_OTHER
+        bool "OTHER"
+
+    endchoice
+
+  endmenu
+
   menu "Network configuration"
 
     config WIFI_SSID
@@ -49,7 +68,7 @@
 
     config HTTPD_RESP_BUF_SIZE
       int "HTTPD response buffer size"
-      range 128 1024
+      range 128 2048
       default 512
 
   endmenu

@@ -25,8 +25,4 @@
 #include "esp_wifi.h"
 #include "tcpip_adapter.h"
 
-#ifndef __ESP_FILE__
-#define __ESP_FILE__ __FILE__
-#endif
-
 #endif // GENERAL_INCLUDE_H

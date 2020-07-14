@@ -27,8 +27,8 @@ esp_err_t setup_network(const network_config_t *network_config) {
     ESP_LOGD(TAG, "System MAC: " MACSTR, MAC2STR(s_system_mac));
   #endif
   #if CONFIG_IP4_ADDRESS
-    ip_info.ip.addr = PP_HTONL(LWIP_MAKEU32(CONFIG_IP4_ADDRESS_1,\
-      CONFIG_IP4_ADDRESS_2,CONFIG_IP4_ADDRESS_3,CONFIG_IP4_ADDRESS_4));
+    ip_info.ip.addr = PP_HTONL(LWIP_MAKEU32(CONFIG_IP4_ADDRESS_1, \
+      CONFIG_IP4_ADDRESS_2, CONFIG_IP4_ADDRESS_3, CONFIG_IP4_ADDRESS_4));
     ESP_ERROR_CHECK(tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
     ESP_LOGD(TAG, "New IP: " IPSTR, IP2STR(&ip_info.ip));
   #endif
