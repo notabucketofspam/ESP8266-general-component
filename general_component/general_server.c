@@ -1,4 +1,4 @@
-#include "general_server.h"
+#include "general_component/general_server.h"
 
 #ifdef __cplusplus
 extern "C" {

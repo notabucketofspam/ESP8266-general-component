@@ -1,4 +1,4 @@
-menu "ESP8266-general-include configuration"
+menu "ESP8266-general-component configuration"
 
   menu "Control configuration"
 
