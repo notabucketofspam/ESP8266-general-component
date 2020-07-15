@@ -1,9 +1,9 @@
 set(COMPONENT_SRCS 
-  "source/general_control"
-  "source/general_network"
-  "source/general_server"
-  "source/general_storage"
+  "general_component/general_control"
+  "general_component/general_network"
+  "general_component/general_server"
+  "general_component/general_storage"
 )
-set(COMPONENT_ADD_INCLUDEDIRS include)
+set(COMPONENT_ADD_INCLUDEDIRS include/general_component)
 
 register_component()
