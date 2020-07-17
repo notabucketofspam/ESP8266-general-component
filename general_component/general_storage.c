@@ -18,8 +18,7 @@ esp_err_t setup_storage(const storage_config_t *storage_config) {
 
 esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_mode_t access_mode) {
   if (file_src == NULL || file_path == NULL) return ESP_FAIL;
-  static char s_access_mode[2];
-  memset(s_access_mode, 0x00, sizeof(s_access_mode));
+  char s_access_mode[2] = { 0 };
   memcpy(s_access_mode, access_mode, 1);
   switch (access_mode) {
     case STORAGE_CLOSE:
@@ -34,8 +33,8 @@ esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_m
     default:
       file_src = fopen(file_path, s_access_mode);
       break;
-    return ESP_OK;
   }
+  return ESP_OK;
 }
 
 #ifdef __cplusplus
