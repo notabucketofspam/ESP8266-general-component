@@ -16,7 +16,7 @@ esp_err_t setup_storage(const storage_config_t storage_config) {
   return ESP_OK;
 }
 
-esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_mode_t access_mode) {
+esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_mode_t *access_mode) {
   if (file_src == NULL || file_path == NULL) return ESP_FAIL;
   char s_access_mode[2] = { 0 };
   memcpy(s_access_mode, access_mode, 1);
