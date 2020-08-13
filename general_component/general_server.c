@@ -36,7 +36,7 @@ static esp_err_t index_html_get_handler(httpd_req_t *req) {
 }
 
 static esp_err_t base_path_get_handler(httpd_req_t *req) {
-  static uint8_t index_html_get_buf[CONFIG_HTTPD_RESP_BUF_SIZE + 1];
+  static char index_html_get_buf[CONFIG_HTTPD_RESP_BUF_SIZE + 1];
   memset(index_html_get_buf, 0x00, sizeof(index_html_get_buf));
   fpos_t file_pos;
   do {
