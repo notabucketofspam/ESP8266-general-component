@@ -52,13 +52,13 @@ extern "C" {
 
 static const char *CONTROL_TAG = "general_control";
 /* Available pins on selected board */
-static uint8_t s_pin_bit_mask[GPIO_PIN_COUNT];
+static char s_pin_bit_mask[GPIO_PIN_COUNT];
 /* Configured mode of pins (input / output) */
-static uint8_t s_pin_mode[GPIO_PIN_COUNT];
+static char s_pin_mode[GPIO_PIN_COUNT];
 /* Persistent map of pin states */
 static FILE *s_gpio_state;
 /* Pin states stored in memory */
-static uint8_t s_gpio_state_mem[GPIO_PIN_COUNT];
+static char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
 typedef struct {
   bool auto_load_persistent_pin_state;        // Use s_gpio_state file at boot?
