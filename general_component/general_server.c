@@ -18,7 +18,7 @@ httpd_uri_t base_path_get = {
   .user_ctx = NULL,
 };
 
-esp_err_t setup_server(const server_config_t *server_config) {
+esp_err_t setup_server(const server_config_t server_config) {
   ESP_LOGI(TAG, "Setup server");
   s_httpd_server = NULL;
   ESP_ERROR_CHECK(httpd_start(&s_httpd_server, &server_config));

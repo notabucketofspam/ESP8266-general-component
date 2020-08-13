@@ -20,7 +20,7 @@ static httpd_handle_t s_httpd_server;
 typedef httpd_config_t server_config_t;
 
 /* Initialize HTTPD server */
-esp_err_t setup_server(const server_config_t *server_config);
+esp_err_t setup_server(const server_config_t server_config);
 /* URI handler for index.html request from client */
 static esp_err_t index_html_get_handler(httpd_req_t *req);
 /* URI handler for base path request from client */
