@@ -1,4 +1,4 @@
-#include "general_component/general_network.h"
+#include "general_network.h"
 
 #ifdef __cplusplus
 extern "C" {

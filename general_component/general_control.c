@@ -1,4 +1,4 @@
-#include "general_component/general_control.h"
+#include "general_control.h"
 
 #ifdef __cplusplus
 extern "C" {
