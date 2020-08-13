@@ -10,7 +10,7 @@ esp_err_t setup_storage(const storage_config_t storage_config) {
   #if CONFIG_LOG_DEFAULT_LEVEL > 3
     size_t total_bytes, used_bytes;
     ESP_ERROR_CHECK(esp_spiffs_info(NULL, &total_bytes, &used_bytes));
-    ESP_LOGD(TAG,"SPIFFS: total bytes: %d used bytes: %d", total_bytes, used_bytes);
+    ESP_LOGD(STORAGE_TAG,"SPIFFS: total bytes: %d used bytes: %d", total_bytes, used_bytes);
   #endif
   ESP_LOGI(STORAGE_TAG, "Storage OK");
   return ESP_OK;
