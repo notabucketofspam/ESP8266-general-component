@@ -16,7 +16,7 @@ extern "C" {
   }                                   \
 }
 
-static const char *TAG = "general_network";
+static const char *NETWORK_TAG = "general_network";
 /* Event handler for WiFi connection */
 static EventGroupHandle_t s_connection_event_group;
 /* Nnetwork connection settings */

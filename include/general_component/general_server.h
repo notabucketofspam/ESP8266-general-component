@@ -11,7 +11,7 @@ extern "C" {
 #define SERVER_DEFAULT_CONFIG() \
   HTTPD_DEFAULT_CONFIG()        
 
-static const char *TAG = "general_server";
+static const char *SERVER_TAG = "general_server";
 /* index.html of HTTPD server  */
 static FILE *s_index_html;
 /* Central HTTPD server */

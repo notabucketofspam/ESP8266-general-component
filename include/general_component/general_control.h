@@ -50,7 +50,7 @@ extern "C" {
 /* Reverse direction of array reading */
 #define GPIO_RTL(x) (GPIO_PIN_COUNT - 1 - x)
 
-static const char *TAG = "general_control";
+static const char *CONTROL_TAG = "general_control";
 /* Available pins on selected board */
 static uint8_t s_pin_bit_mask[GPIO_PIN_COUNT];
 /* Configured mode of pins (input / output) */

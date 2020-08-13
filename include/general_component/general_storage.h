@@ -15,7 +15,7 @@ extern "C" {
     .format_if_mount_failed = false,      \
 }
 
-static const char *TAG = "general_storage";
+static const char *STORAGE_TAG = "general_storage";
 /* Operation to perform on storage */
 typedef enum {
   STORAGE_APPEND      = 'a',

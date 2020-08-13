@@ -5,7 +5,7 @@ extern "C" {
 #endif
 
 esp_err_t setup_control(const control_config_t control_config) {
-  ESP_LOGI(TAG, "Setup control");
+  ESP_LOGI(CONTROL_TAG, "Setup control");
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
   uint8_t config_index;
@@ -18,7 +18,7 @@ esp_err_t setup_control(const control_config_t control_config) {
   }
   if (control_config.auto_load_persistent_pin_state)
     ESP_ERROR_CHECK(load_persistent_gpio_state());
-  ESP_LOGI(TAG, "Control OK");
+  ESP_LOGI(CONTROL_TAG, "Control OK");
   return ESP_OK;
 }
 

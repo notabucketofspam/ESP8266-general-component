@@ -5,7 +5,7 @@ extern "C" {
 #endif
 
 esp_err_t setup_network(const network_config_t network_config) {
-  ESP_LOGI(TAG, "Setup network");
+  ESP_LOGI(NETWORK_TAG, "Setup network");
   s_connection_event_group = xEventGroupCreate();
 	ESP_ERROR_CHECK(nvs_flash_init());
   tcpip_adapter_init();
@@ -20,19 +20,19 @@ esp_err_t setup_network(const network_config_t network_config) {
   xEventGroupWaitBits(s_connection_event_group, RECEIVE_IP_BIT, true, true, 
     CONFIG_NETWORK_TIMEOUT * 1000 / portTICK_PERIOD_MS);
   ESP_ERROR_CHECK(tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
-  ESP_LOGD(TAG, "IP receive: " IPSTR, IP2STR(&ip_info.ip));
+  ESP_LOGD(NETWORK_TAG, "IP receive: " IPSTR, IP2STR(&ip_info.ip));
   #if CONFIG_LOG_DEFAULT_LEVEL > 3
     static uint8_t s_system_mac[6];
     esp_read_mac(&s_system_mac, ESP_MAC_WIFI_STA);
-    ESP_LOGD(TAG, "System MAC: " MACSTR, MAC2STR(s_system_mac));
+    ESP_LOGD(NETWORK_TAG, "System MAC: " MACSTR, MAC2STR(s_system_mac));
   #endif
   #if CONFIG_IP4_ADDRESS
     ip_info.ip.addr = PP_HTONL(LWIP_MAKEU32(CONFIG_IP4_ADDRESS_1, \
       CONFIG_IP4_ADDRESS_2, CONFIG_IP4_ADDRESS_3, CONFIG_IP4_ADDRESS_4));
     ESP_ERROR_CHECK(tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
-    ESP_LOGD(TAG, "New IP: " IPSTR, IP2STR(&ip_info.ip));
+    ESP_LOGD(NETWORK_TAG, "New IP: " IPSTR, IP2STR(&ip_info.ip));
   #endif
-  ESP_LOGI(TAG, "Network OK");
+  ESP_LOGI(NETWORK_TAG, "Network OK");
   return ESP_OK;
 }
 

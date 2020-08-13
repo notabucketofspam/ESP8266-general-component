@@ -19,12 +19,12 @@ httpd_uri_t base_path_get = {
 };
 
 esp_err_t setup_server(const server_config_t server_config) {
-  ESP_LOGI(TAG, "Setup server");
+  ESP_LOGI(SERVER_TAG, "Setup server");
   s_httpd_server = NULL;
   ESP_ERROR_CHECK(httpd_start(&s_httpd_server, &server_config));
   ESP_ERROR_CHECK(httpd_register_uri_handler(s_httpd_server, &index_html_get));
   ESP_ERROR_CHECK(httpd_register_uri_handler(s_httpd_server, &base_path_get));
-  ESP_LOGI(TAG, "Server OK");
+  ESP_LOGI(SERVER_TAG, "Server OK");
   return ESP_OK;
 }
 
