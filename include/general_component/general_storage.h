@@ -12,7 +12,7 @@ extern "C" {
     .base_path = "/spiffs",               \
     .partition_label = NULL,              \
     .max_files = CONFIG_SPIFFS_MAX_FILES, \
-    .format_if_mount_failed = false,      \
+    .format_if_mount_failed = true        \
 }
 
 static const char *STORAGE_TAG = "general_storage";
