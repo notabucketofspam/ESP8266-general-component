@@ -25,4 +25,12 @@
 #include "esp_wifi.h"
 #include "tcpip_adapter.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif // GENERAL_INCLUDE_H
