@@ -12,11 +12,11 @@ esp_err_t setup_control(const control_config_t control_config) {
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-    ESP_ERROR_CHECK(gpio_config(&control_config->control_list[config_index]));
-    s_pin_mode[GPIO_RTL(config_index)] = 0x30 + control_config->control_list[config_index].mode;
+    ESP_ERROR_CHECK(gpio_config(&control_config.control_list[config_index]));
+    s_pin_mode[GPIO_RTL(config_index)] = 0x30 + control_config.control_list[config_index].mode;
     s_pin_bit_mask[GPIO_RTL(config_index)] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
   }
-  if (control_config->auto_load_persistent_pin_state)
+  if (control_config.auto_load_persistent_pin_state)
     ESP_ERROR_CHECK(load_persistent_gpio_state());
   ESP_LOGI(TAG, "Control OK");
   return ESP_OK;
