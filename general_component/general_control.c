@@ -7,11 +7,13 @@ extern "C" {
 esp_err_t setup_control(control_config_t control_config) {
   ESP_LOGI(CONTROL_TAG, "Setup control");
   gpio_config_t control_output = {
-    .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output),
+    .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output) & 
+      (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
+      ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF)),
     .mode = GPIO_MODE_OUTPUT,
   };
-  control_output.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
-    ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
+  // control_output.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
+  //   ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
   ESP_LOGI(CONTROL_TAG, "%d", control_output.pin_bit_mask);
   ESP_ERROR_CHECK(gpio_config(&control_output));
   gpio_config_t control_input = {
