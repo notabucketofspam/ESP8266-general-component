@@ -15,12 +15,13 @@ extern "C" {
   #define PIN_BIT_MASK (BIT(0) | BIT(1) | BIT(2) | BIT(3) | BIT(4) | BIT(5)  \
     | BIT(12) | BIT(13) | BIT(14) | BIT(15) | BIT(16))
 #elif defined(CONFIG_ESP_BOARD_ESP_01S)
-  #define PIN_BIT_MASK (BIT(1) | BIT(3))
+  #define PIN_BIT_MASK (BIT(0) | BIT(1) | BIT(2) | BIT(3))
 #else
   #define PIN_BIT_MASK (0x1FFFF)
 #endif
 /* Set all pins to output */
 #define CONTROL_DEFAULT_CONFIG() {          \
+  .keep_uart_0 = true,                      \
   .auto_load_persistent_pin_state = false,  \
   .pin_mask_output = 0x1FFFF,               \
   .pin_mask_input = 0x0000,                 \
@@ -37,6 +38,7 @@ static FILE *f_gpio_state;
 static char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
 typedef struct {
+  bool keep_uart_0;                     // Disable GPIO1 / GPIO3 to keep serial TX / RX?
   bool auto_load_persistent_pin_state;  // Use f_gpio_state file at boot?
   unsigned long long pin_mask_output;   // GPIO pins set to output
   unsigned long long pin_mask_input;    // GPIO pins set to input

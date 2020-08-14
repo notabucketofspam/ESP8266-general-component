@@ -6,20 +6,20 @@ extern "C" {
 
 esp_err_t setup_control(control_config_t control_config) {
   ESP_LOGI(CONTROL_TAG, "Setup control");
+  if (control_config.keep_uart_0) {
+    control_config.pin_mask_output &= ~(BIT(1) & BIT(3));
+    control_config.pin_mask_input &= ~(BIT(1) & BIT(3));
+  }
   gpio_config_t control_output = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output),
     .mode = GPIO_MODE_OUTPUT,
   };
   ESP_ERROR_CHECK(gpio_config(&control_output));
-  ESP_LOGI(CONTROL_TAG, "C0");
-  vTaskDelay(1000 / portTICK_RATE_MS);
   gpio_config_t control_input = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_input),
     .mode = GPIO_MODE_INPUT,
   };
   ESP_ERROR_CHECK(gpio_config(&control_input));
-  ESP_LOGI(CONTROL_TAG, "C1");
-  vTaskDelay(1000 / portTICK_RATE_MS);
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
   uint8_t config_index;
