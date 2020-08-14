@@ -12,9 +12,10 @@ esp_err_t setup_control(const control_config_t control_config) {
   uint8_t config_index;
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
     ESP_LOGI(CONTROL_TAG, "%d", config_index);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-    ESP_ERROR_CHECK(gpio_config(&(control_config.control_list[config_index])));
+    ESP_ERROR_CHECK(gpio_config(&control_config.control_list[config_index]));
     s_pin_mode[config_index] = 0x30 + control_config.control_list[config_index].mode;
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
   }
