@@ -21,6 +21,7 @@ extern "C" {
 #endif
 /* Set all pins to output */
 #define CONTROL_DEFAULT_CONFIG() {          \
+  .keep_uart_1 = true                       \
   .keep_uart = (BIT(0) & BIT(1)),           \
   .auto_load_persistent_pin_state = true,   \
   .pin_mask_output = GPIO_Pin_All,          \
