@@ -27,10 +27,13 @@ esp_err_t setup_control(control_config_t control_config) {
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
   uint8_t config_index;
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
+    ESP_LOGI(CONTROL_TAG, "%d", config_index);
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
+    ESP_LOGI(CONTROL_TAG, "C1");
     s_pin_mode[config_index] = (BIT(config_index) & control_input.pin_bit_mask) ? '1' : 
       (BIT(config_index) & control_output.pin_bit_mask) ? '2' : '0';
+    ESP_LOGI(CONTROL_TAG, "C2");
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
   }
   if (control_config.auto_load_persistent_pin_state)
