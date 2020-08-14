@@ -16,10 +16,12 @@ esp_err_t setup_control(control_config_t control_config) {
   };
   control_output.pin_bit_mask &= ~(control_config.keep_peripheral);
   control_input.pin_bit_mask &= ~(control_config.keep_peripheral);
-  ESP_LOGI(CONTROL_TAG, "out: %x", control_output.pin_bit_mask);
-  ESP_LOGI(CONTROL_TAG, "in: %x", control_input.pin_bit_mask);
-  ESP_ERROR_CHECK(gpio_config(&control_output));
-  ESP_ERROR_CHECK(gpio_config(&control_input));
+  ESP_LOGI(CONTROL_TAG, "pin bit mask out: %x", control_output.pin_bit_mask);
+  ESP_LOGI(CONTROL_TAG, "pin bit mask in: %x", control_input.pin_bit_mask);
+  if (control_output.pin_bit_mask)
+    ESP_ERROR_CHECK(gpio_config(&control_output));
+  if (control_input.pin_bit_mask)
+    ESP_ERROR_CHECK(gpio_config(&control_input));
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
   uint8_t config_index;
