@@ -29,7 +29,7 @@ typedef enum {
 typedef esp_vfs_spiffs_conf_t storage_config_t;
 
 /* Initialize SPIFFS storage */
-esp_err_t setup_storage(const storage_config_t storage_config);
+esp_err_t setup_storage(storage_config_t storage_config);
 /* Control files in SPIFFS */
 esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_mode_t access_mode);
 

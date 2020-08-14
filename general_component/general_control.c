@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-esp_err_t setup_control(const control_config_t control_config) {
+esp_err_t setup_control(control_config_t control_config) {
   ESP_LOGI(CONTROL_TAG, "Setup control");
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));

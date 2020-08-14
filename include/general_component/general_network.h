@@ -23,7 +23,7 @@ static EventGroupHandle_t s_connection_event_group;
 typedef wifi_config_t network_config_t;
 
 /* Initialize WiFi network */
-esp_err_t setup_network(const network_config_t network_config);
+esp_err_t setup_network(network_config_t network_config);
 /* Event handler for IPv4 address receive */
 static void connection_receive_ip(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data);
 

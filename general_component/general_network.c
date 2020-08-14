@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-esp_err_t setup_network(const network_config_t network_config) {
+esp_err_t setup_network(network_config_t network_config) {
   ESP_LOGI(NETWORK_TAG, "Setup network");
   s_connection_event_group = xEventGroupCreate();
 	ESP_ERROR_CHECK(nvs_flash_init());
