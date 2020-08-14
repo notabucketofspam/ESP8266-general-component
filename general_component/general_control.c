@@ -15,8 +15,8 @@ esp_err_t setup_control(control_config_t control_config) {
     .mode = GPIO_MODE_INPUT,
   };
   if (control_config.keep_uart & BIT(0)) {
-    control_output.pin_bit_mask &= ~(BIT(1) & BIT(3));
-    control_input.pin_bit_mask &= ~(BIT(1) & BIT(3));
+    control_output.pin_bit_mask &= ~(BIT(1) | BIT(3));
+    control_input.pin_bit_mask &= ~(BIT(1) | BIT(3));
   }
   if (control_config.keep_uart & BIT(1)) {
     control_output.pin_bit_mask &= ~(BIT(2));
