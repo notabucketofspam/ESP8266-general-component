@@ -14,16 +14,10 @@ esp_err_t setup_control(control_config_t control_config) {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_input),
     .mode = GPIO_MODE_INPUT,
   };
-  if (control_config.keep_uart & BIT(0)) {
-    control_output.pin_bit_mask &= ~(BIT(1) | BIT(3));
-    control_input.pin_bit_mask &= ~(BIT(1) | BIT(3));
-  }
-  if (control_config.keep_uart & BIT(1)) {
-    control_output.pin_bit_mask &= ~(BIT(2));
-    control_input.pin_bit_mask &= ~(BIT(2));
-  }
-  ESP_LOGI(CONTROL_TAG, "out: %d", control_output.pin_bit_mask);
-  ESP_LOGI(CONTROL_TAG, "in: %d", control_input.pin_bit_mask);
+  control_output.pin_bit_mask &= ~(control_config.keep_peripheral);
+  control_input.pin_bit_mask &= ~(control_config.keep_peripheral);
+  ESP_LOGI(CONTROL_TAG, "out: %x", control_output.pin_bit_mask);
+  ESP_LOGI(CONTROL_TAG, "in: %x", control_input.pin_bit_mask);
   ESP_ERROR_CHECK(gpio_config(&control_output));
   ESP_ERROR_CHECK(gpio_config(&control_input));
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));

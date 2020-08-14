@@ -21,7 +21,7 @@ extern "C" {
 #endif
 /* Set all pins to output */
 #define CONTROL_DEFAULT_CONFIG() {          \
-  .keep_uart = (BIT(0) | BIT(1)),           \
+  .keep_peripheral = CONTROL_UART_0,        \
   .auto_load_persistent_pin_state = true,   \
   .pin_mask_output = GPIO_Pin_All,          \
   .pin_mask_input = 0x0000,                 \
@@ -37,8 +37,14 @@ static FILE *f_gpio_state;
 /* Pin states stored in memory */
 static char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
+typedef enum {
+  CONTROL_UART_0  = (BIT(1) | BIT(3)),
+  CONTROL_UART_1  = (BIT(2)),
+  CONTROL_I2C     = (BIT(4) | BIT(5)),
+  CONTROL_SPI     = (BIT(12) | BIT(13) | BIT(14) | BIT(15)),
+} control_peripheral_t;
 typedef struct {
-  unsigned char keep_uart;              // Pin mask for which UART ports to keep
+  unsigned long long keep_peripheral;   // Pin mask for which peripherals to keep
   bool auto_load_persistent_pin_state;  // Use f_gpio_state file at boot?
   unsigned long long pin_mask_output;   // GPIO pins set to output
   unsigned long long pin_mask_input;    // GPIO pins set to input
