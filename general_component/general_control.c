@@ -15,16 +15,13 @@ esp_err_t setup_control(const control_config_t control_config) {
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
     ESP_LOGI(CONTROL_TAG, "C0");
-    vTaskDelay(100 / portTICK_PERIOD_MS);
     ESP_ERROR_CHECK(gpio_config(&control_config.control_list[config_index]));
     ESP_LOGI(CONTROL_TAG, "C1");
-    vTaskDelay(100 / portTICK_PERIOD_MS);
     s_pin_mode[config_index] = 0x30 + control_config.control_list[config_index].mode;
     ESP_LOGI(CONTROL_TAG, "C2");
-    vTaskDelay(100 / portTICK_PERIOD_MS);
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
     ESP_LOGI(CONTROL_TAG, "C3");
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    // vTaskDelay(100 / portTICK_PERIOD_MS);
   }
   if (control_config.auto_load_persistent_pin_state)
     ESP_ERROR_CHECK(load_persistent_gpio_state());
