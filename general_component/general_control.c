@@ -14,7 +14,7 @@ esp_err_t setup_control(const control_config_t control_config) {
     ESP_LOGI(CONTROL_TAG, "%d", config_index);
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-    ESP_ERROR_CHECK(gpio_config(&control_config.control_list[config_index]));
+    ESP_ERROR_CHECK(gpio_config(&(control_config.control_list[config_index])));
     s_pin_mode[config_index] = 0x30 + control_config.control_list[config_index].mode;
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
   }
