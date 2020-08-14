@@ -13,7 +13,7 @@ extern "C" {
 
 static const char *SERVER_TAG = "general_server";
 /* index.html of HTTPD server  */
-static FILE *s_index_html;
+static FILE *f_index_html;
 /* Central HTTPD server */
 static httpd_handle_t s_httpd_server;
 /* HTTPD server settings */
