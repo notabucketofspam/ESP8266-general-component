@@ -12,11 +12,13 @@ esp_err_t setup_control(const control_config_t control_config) {
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-      ESP_LOGI(CONTROL_TAG, "C0");
+    ESP_LOGI(CONTROL_TAG, "C0");
     ESP_ERROR_CHECK(gpio_config(&control_config.control_list[config_index]));
     ESP_LOGI(CONTROL_TAG, "C1");
     s_pin_mode[config_index] = 0x30 + control_config.control_list[config_index].mode;
+    ESP_LOGI(CONTROL_TAG, "C2");
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
+    ESP_LOGI(CONTROL_TAG, "C3");
   }
   if (control_config.auto_load_persistent_pin_state)
     ESP_ERROR_CHECK(load_persistent_gpio_state());
