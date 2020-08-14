@@ -22,6 +22,7 @@ esp_err_t setup_control(control_config_t control_config) {
     ESP_ERROR_CHECK(gpio_config(&control_output));
   if (control_input.pin_bit_mask)
     ESP_ERROR_CHECK(gpio_config(&control_input));
+  ESP_LOGI(CONTROL_TAG, "C0");
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
   uint8_t config_index;
