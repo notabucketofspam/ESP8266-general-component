@@ -11,14 +11,14 @@ esp_err_t setup_control(control_config_t control_config) {
     .mode = GPIO_MODE_OUTPUT,
   };
   ESP_ERROR_CHECK(gpio_config(&control_output));
-  ESP_LOGI("C0");
+  ESP_LOGI(CONTROL_TAG, "C0");
   vTaskDelay(1000 / portTICK_RATE_MS);
   gpio_config_t control_input = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_input),
     .mode = GPIO_MODE_INPUT,
   };
   ESP_ERROR_CHECK(gpio_config(&control_input));
-  ESP_LOGI("C1");
+  ESP_LOGI(CONTROL_TAG, "C1");
   vTaskDelay(1000 / portTICK_RATE_MS);
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
