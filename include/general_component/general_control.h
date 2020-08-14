@@ -37,9 +37,9 @@ static FILE *f_gpio_state;
 static char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
 typedef struct {
-  bool auto_load_persistent_pin_state;        // Use f_gpio_state file at boot?
-  uint32_t pin_mask_output; // GPIO pins set to output
-  uint32_t pin_mask_input; // GPIO pins set to input
+  bool auto_load_persistent_pin_state;  // Use f_gpio_state file at boot?
+  uint32_t pin_mask_output;             // GPIO pins set to output
+  uint32_t pin_mask_input;              // GPIO pins set to input
 } control_config_t;
 
 /* Initialize GPIO control */
