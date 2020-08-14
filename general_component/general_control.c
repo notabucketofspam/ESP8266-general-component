@@ -7,21 +7,19 @@ extern "C" {
 esp_err_t setup_control(control_config_t control_config) {
   ESP_LOGI(CONTROL_TAG, "Setup control");
   gpio_config_t control_output = {
-    .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output) & 
-      (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
-      ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF)),
+    .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output),
     .mode = GPIO_MODE_OUTPUT,
   };
-  // control_output.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
-  //   ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
+  if (control_config.keep_uart_1)
+    control_output.pin_bit_mask &= ~(BIT(2));
   ESP_LOGI(CONTROL_TAG, "%d", control_output.pin_bit_mask);
   ESP_ERROR_CHECK(gpio_config(&control_output));
   gpio_config_t control_input = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_input),
     .mode = GPIO_MODE_INPUT,
   };
-  control_input.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
-    ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
+  // control_input.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
+  //   ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
   ESP_ERROR_CHECK(gpio_config(&control_input));
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
