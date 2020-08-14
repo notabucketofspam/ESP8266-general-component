@@ -22,7 +22,8 @@ esp_err_t setup_control(control_config_t control_config) {
     control_output.pin_bit_mask &= ~(BIT(2));
     control_input.pin_bit_mask &= ~(BIT(2));
   }
-  ESP_LOGI(CONTROL_TAG, "%d", control_output.pin_bit_mask);
+  ESP_LOGI(CONTROL_TAG, "out: %d", control_output.pin_bit_mask);
+  ESP_LOGI(CONTROL_TAG, "in: %d", control_input.pin_bit_mask);
   ESP_ERROR_CHECK(gpio_config(&control_output));
   ESP_ERROR_CHECK(gpio_config(&control_input));
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
