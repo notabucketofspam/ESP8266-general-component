@@ -10,15 +10,15 @@ esp_err_t setup_control(control_config_t control_config) {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output),
     .mode = GPIO_MODE_OUTPUT,
   };
+  control_output.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
+    ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
+  ESP_ERROR_CHECK(gpio_config(&control_output));
   gpio_config_t control_input = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_input),
     .mode = GPIO_MODE_INPUT,
   };
-  if (control_config.keep_uart_0) {
-    control_output.pin_bit_mask &= ~(BIT(1) & BIT(3));
-    control_input.pin_bit_mask &= ~(BIT(1) & BIT(3));
-  }
-  ESP_ERROR_CHECK(gpio_config(&control_output));
+  control_input.pin_bit_mask &= (((BIT(0) & control_config.keep_uart) ? ~(BIT(1) & BIT(3)) : 0x1FFFF) &
+    ((BIT(1) & control_config.keep_uart) ? ~(BIT(2)) : 0x1FFFF));
   ESP_ERROR_CHECK(gpio_config(&control_input));
   memset(s_pin_mode, 0x30, sizeof(s_pin_mode));
   memset(s_pin_bit_mask, 0x30, sizeof(s_pin_bit_mask));
@@ -26,8 +26,8 @@ esp_err_t setup_control(control_config_t control_config) {
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-    s_pin_mode[config_index] = (BIT(config_index) & control_config.pin_mask_input) ? '1' : 
-      (BIT(config_index) & control_config.pin_mask_output) ? '2' : '0';
+    s_pin_mode[config_index] = (BIT(config_index) & control_input.pin_bit_mask) ? '1' : 
+      (BIT(config_index) & control_output.pin_bit_mask) ? '2' : '0';
     s_pin_bit_mask[config_index] = (PIN_BIT_MASK & BIT(config_index)) ? '1' : '0';
   }
   if (control_config.auto_load_persistent_pin_state)

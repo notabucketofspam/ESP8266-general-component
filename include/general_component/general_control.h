@@ -21,7 +21,7 @@ extern "C" {
 #endif
 /* Set all pins to output */
 #define CONTROL_DEFAULT_CONFIG() {          \
-  .keep_uart_0 = true,                      \
+  .keep_uart = (BIT(0) & BIT(1)),           \
   .auto_load_persistent_pin_state = false,  \
   .pin_mask_output = 0x1FFFF,               \
   .pin_mask_input = 0x0000,                 \
@@ -38,7 +38,7 @@ static FILE *f_gpio_state;
 static char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
 typedef struct {
-  bool keep_uart_0;                     // Disable GPIO1 / GPIO3 to keep serial TX / RX?
+  unsigned char keep_uart;              // Pin mask for which UART ports to keep
   bool auto_load_persistent_pin_state;  // Use f_gpio_state file at boot?
   unsigned long long pin_mask_output;   // GPIO pins set to output
   unsigned long long pin_mask_input;    // GPIO pins set to input
