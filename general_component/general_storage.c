@@ -33,6 +33,7 @@ esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_m
       file_src = fopen(file_path, s_access_mode);
       break;
   }
+  if (file_src == NULL) return ESP_FAIL;
   return ESP_OK;
 }
 
