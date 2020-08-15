@@ -8,8 +8,10 @@ extern "C" {
 #endif
 
 /* Set server config to default values */
-#define SERVER_DEFAULT_CONFIG() \
-  HTTPD_DEFAULT_CONFIG()        
+#define SERVER_DEFAULT_CONFIG(x) {        \
+  httpd_config = HTTPD_DEFAULT_CONFIG(),  \
+  httpd_handle = x,                       \
+}
 
 static const char *SERVER_TAG = "general_server";
 /* index.html of HTTPD server  */
@@ -17,7 +19,10 @@ static FILE *f_index_html;
 /* Central HTTPD server */
 static httpd_handle_t s_httpd_server;
 /* HTTPD server settings */
-typedef httpd_config_t server_config_t;
+typedef struct {
+  httpd_config_t httpd_config;
+  httpd_handle_t httpd_handle;
+} server_config_t;
 
 /* Initialize HTTPD server */
 esp_err_t setup_server(server_config_t server_config);
