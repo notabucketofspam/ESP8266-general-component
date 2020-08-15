@@ -45,7 +45,7 @@ esp_err_t load_persistent_gpio_state(FILE *file_src) {
     if (s_pin_mode[state_index] == '2')
       ESP_ERROR_CHECK(gpio_set_level(state_index, pin_state));
   }
-  rewind(f_gpio_state);
+  rewind(file_src);
   return ESP_OK;
 }
 
