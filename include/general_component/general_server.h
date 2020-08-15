@@ -9,8 +9,8 @@ extern "C" {
 
 /* Set server config to default values */
 #define SERVER_DEFAULT_CONFIG(x) {        \
-  .httpd_config = HTTPD_DEFAULT_CONFIG(),  \
-  .httpd_handle = x,                       \
+  .httpd_config = HTTPD_DEFAULT_CONFIG(), \
+  .httpd_handle = x,                      \
 }
 
 static const char *SERVER_TAG = "general_server";
