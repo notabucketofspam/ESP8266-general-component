@@ -7,31 +7,19 @@ extern "C" {
 esp_err_t setup_network(network_config_t network_config) {
   ESP_LOGI(NETWORK_TAG, "Setup network");
   s_connection_event_group = xEventGroupCreate();
-  ESP_LOGD(NETWORK_TAG, "N-2");
 	ESP_ERROR_CHECK(nvs_flash_init());
-  ESP_LOGD(NETWORK_TAG, "N-1");
   tcpip_adapter_init();
-  ESP_LOGD(NETWORK_TAG, "N0");
   tcpip_adapter_ip_info_t ip_info;
   wifi_init_config_t wifi_init_config = WIFI_INIT_CONFIG_DEFAULT();
-  ESP_LOGD(NETWORK_TAG, "N1");
   ESP_ERROR_CHECK(esp_wifi_init(&wifi_init_config));
-  ESP_LOGD(NETWORK_TAG, "N2");
   ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connection_receive_ip, &ip_info));
-  ESP_LOGD(NETWORK_TAG, "N3");
   ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-  ESP_LOGD(NETWORK_TAG, "N4");
   ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &network_config));
-  ESP_LOGD(NETWORK_TAG, "N5");
 	ESP_ERROR_CHECK(esp_wifi_start());
-  ESP_LOGD(NETWORK_TAG, "N5.5");
   ESP_ERROR_CHECK(esp_wifi_connect());
-  ESP_LOGD(NETWORK_TAG, "N6");
   xEventGroupWaitBits(s_connection_event_group, RECEIVE_IP_BIT, true, true, 
     CONFIG_NETWORK_TIMEOUT * 1000 / portTICK_PERIOD_MS);
-  ESP_LOGD(NETWORK_TAG, "N6.5");
   ESP_ERROR_CHECK(tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
-  ESP_LOGD(NETWORK_TAG, "N7");
   ESP_LOGD(NETWORK_TAG, "IP receive: " IPSTR, IP2STR(&ip_info.ip));
   #if CONFIG_LOG_DEFAULT_LEVEL > 3
     uint8_t s_system_mac[6];
