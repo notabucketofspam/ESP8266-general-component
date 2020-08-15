@@ -18,7 +18,7 @@ esp_err_t setup_storage(storage_config_t storage_config) {
 
 esp_err_t storage_access(FILE *file_src, const char *file_path, storage_access_mode_t access_mode) {
   if (file_path == NULL) return ESP_FAIL;
-  char s_access_mode[2] = { access_mode, 0 };
+  char s_access_mode[2] = { 0 };
   switch (access_mode) {
     case STORAGE_CLOSE:
       fclose(file_src);
