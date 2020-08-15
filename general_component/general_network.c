@@ -22,6 +22,15 @@ esp_err_t setup_network(network_config_t network_config) {
   ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
   ESP_LOGI(NETWORK_TAG, "N4");
   ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &network_config));
+  ESP_LOGI(NETWORK_TAG, "N4.5");
+  ESP_ERROR_CHECK(tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
+  ESP_LOGI(NETWORK_TAG, "N4.7");
+  #if CONFIG_IP4_ADDRESS
+    ip_info.ip.addr = PP_HTONL(LWIP_MAKEU32(CONFIG_IP4_ADDRESS_1, \
+      CONFIG_IP4_ADDRESS_2, CONFIG_IP4_ADDRESS_3, CONFIG_IP4_ADDRESS_4));
+    ESP_ERROR_CHECK(tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
+    ESP_LOGD(NETWORK_TAG, "New IP: " IPSTR, IP2STR(&ip_info.ip));
+  #endif
   ESP_LOGI(NETWORK_TAG, "N5");
 	ESP_ERROR_CHECK(esp_wifi_start());
   ESP_ERROR_CHECK(esp_wifi_connect());
@@ -36,12 +45,6 @@ esp_err_t setup_network(network_config_t network_config) {
     static uint8_t s_system_mac[6];
     esp_read_mac(&s_system_mac, ESP_MAC_WIFI_STA);
     ESP_LOGD(NETWORK_TAG, "System MAC: " MACSTR, MAC2STR(s_system_mac));
-  #endif
-  #if CONFIG_IP4_ADDRESS
-    ip_info.ip.addr = PP_HTONL(LWIP_MAKEU32(CONFIG_IP4_ADDRESS_1, \
-      CONFIG_IP4_ADDRESS_2, CONFIG_IP4_ADDRESS_3, CONFIG_IP4_ADDRESS_4));
-    ESP_ERROR_CHECK(tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
-    ESP_LOGD(NETWORK_TAG, "New IP: " IPSTR, IP2STR(&ip_info.ip));
   #endif
   ESP_LOGI(NETWORK_TAG, "Network OK");
   return ESP_OK;
