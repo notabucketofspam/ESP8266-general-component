@@ -50,6 +50,10 @@ static esp_err_t base_path_get_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
+esp_err_t load_index_html(FILE *file_src) {
+  
+}
+
 #ifdef __cplusplus
 }
 #endif
