@@ -28,6 +28,7 @@ esp_err_t setup_network(network_config_t network_config) {
   ESP_LOGI(NETWORK_TAG, "N6");
   xEventGroupWaitBits(s_connection_event_group, RECEIVE_IP_BIT, true, true, 
     CONFIG_NETWORK_TIMEOUT * 1000 / portTICK_PERIOD_MS);
+  ESP_LOGI(NETWORK_TAG, "N6.5");
   ESP_ERROR_CHECK(tcpip_adapter_get_ip_info(TCPIP_ADAPTER_IF_STA, &ip_info));
   ESP_LOGI(NETWORK_TAG, "N7");
   ESP_LOGD(NETWORK_TAG, "IP receive: " IPSTR, IP2STR(&ip_info.ip));
