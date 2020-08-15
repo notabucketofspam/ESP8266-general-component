@@ -39,7 +39,7 @@ esp_err_t setup_control(control_config_t control_config) {
 }
 
 esp_err_t load_persistent_gpio_state(void) {
-  bool pin_state;
+  bool pin_state = 0;
   uint8_t state_index;
   for (state_index = 0; state_index < GPIO_PIN_COUNT; ++state_index) {
     ESP_LOGI(CONTROL_TAG, "C%d", state_index);
