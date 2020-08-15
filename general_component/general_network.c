@@ -24,7 +24,7 @@ esp_err_t setup_network(network_config_t network_config) {
   ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &network_config));
   ESP_LOGD(NETWORK_TAG, "N5");
 	ESP_ERROR_CHECK(esp_wifi_start());
-  ESP_LOGD(NETWORK_TAG, "N5");
+  ESP_LOGD(NETWORK_TAG, "N5.5");
   ESP_ERROR_CHECK(esp_wifi_connect());
   ESP_LOGD(NETWORK_TAG, "N6");
   xEventGroupWaitBits(s_connection_event_group, RECEIVE_IP_BIT, true, true, 
