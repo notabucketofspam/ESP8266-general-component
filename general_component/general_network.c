@@ -34,8 +34,8 @@ esp_err_t setup_network(network_config_t network_config) {
   ESP_LOGD(NETWORK_TAG, "N7");
   ESP_LOGD(NETWORK_TAG, "IP receive: " IPSTR, IP2STR(&ip_info.ip));
   #if CONFIG_LOG_DEFAULT_LEVEL > 3
-    static uint8_t s_system_mac[6];
-    esp_read_mac(&s_system_mac, ESP_MAC_WIFI_STA);
+    uint8_t s_system_mac[6];
+    esp_read_mac(s_system_mac, ESP_MAC_WIFI_STA);
     ESP_LOGD(NETWORK_TAG, "System MAC: " MACSTR, MAC2STR(s_system_mac));
   #endif
   #if CONFIG_IP4_ADDRESS
