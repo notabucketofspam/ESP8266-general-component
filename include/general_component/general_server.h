@@ -25,8 +25,6 @@ esp_err_t setup_server(server_config_t server_config);
 static esp_err_t index_html_get_handler(httpd_req_t *req);
 /* URI handler for base path request from client */
 static esp_err_t base_path_get_handler(httpd_req_t *req);
-/* Load index.html into memory */
-esp_err_t load_index_html(FILE *file_src);
 
 #ifdef __cplusplus
 }
