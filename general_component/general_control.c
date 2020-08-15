@@ -40,8 +40,11 @@ esp_err_t load_persistent_gpio_state(FILE *file_src) {
   bool pin_state = 0;
   uint8_t state_index;
   for (state_index = 0; state_index < GPIO_PIN_COUNT; ++state_index) {
+    ESP_LOGD(CONTROL_TAG, "C1%d", state_index);
     pin_state = (fgetc(file_src) == '1');
+    ESP_LOGD(CONTROL_TAG, "C2%d", state_index);
     s_gpio_state_mem[state_index] = pin_state;
+    ESP_LOGD(CONTROL_TAG, "C3%d", state_index);
     if (s_pin_mode[state_index] == '2')
       ESP_ERROR_CHECK(gpio_set_level(state_index, pin_state));
   }
