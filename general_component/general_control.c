@@ -28,16 +28,16 @@ esp_err_t setup_control(control_config_t control_config) {
   for (config_index = 0; config_index < GPIO_PIN_COUNT; ++config_index) {
     if (!(PIN_BIT_MASK & BIT(config_index)))
       continue;
-    s_pin_mode[config_index] = (BIT(config_index) & control_input.pin_bit_mask) ? '1' : 
-      (BIT(config_index) & control_output.pin_bit_mask) ? '2' : '0';
     s_pin_bit_mask[config_index] = ((control_config.pin_mask_output | control_config.pin_mask_input) & 
       BIT(config_index)) ? '1' : '0';
+    s_pin_mode[config_index] = (BIT(config_index) & control_input.pin_bit_mask) ? '1' : 
+      (BIT(config_index) & control_output.pin_bit_mask) ? '2' : '0';
   }
   char buf[GPIO_PIN_COUNT + 1] = { 0 };
   memcpy(buf, s_pin_bit_mask, sizeof(s_pin_bit_mask));
-  ESP_LOGW(CONTROL_TAG, "%s", buf);
+  ESP_LOGW(CONTROL_TAG, "mask %s", buf);
   memcpy(buf, s_pin_mode, sizeof(s_pin_mode));
-  ESP_LOGW(CONTROL_TAG, "%s", buf);
+  ESP_LOGW(CONTROL_TAG, "mode %s", buf);
   ESP_LOGI(CONTROL_TAG, "Control OK");
   return ESP_OK;
 }
