@@ -22,6 +22,7 @@ esp_err_t setup_server(server_config_t server_config) {
   ESP_LOGI(SERVER_TAG, "Setup server");
   server_config.httpd_handle = NULL;
   ESP_ERROR_CHECK(httpd_start(&server_config.httpd_handle, &server_config.httpd_config));
+  ESP_LOGD(CORE_TAG, "handle 0x%x", (unsigned int) server_config.httpd_handle);
   ESP_ERROR_CHECK(httpd_register_uri_handler(server_config.httpd_handle, &index_html_get));
   ESP_ERROR_CHECK(httpd_register_uri_handler(server_config.httpd_handle, &base_path_get));
   ESP_LOGI(SERVER_TAG, "Server OK");
