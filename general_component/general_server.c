@@ -19,6 +19,8 @@ httpd_uri_t base_path_get = {
 };
 
 esp_err_t setup_server(server_config_t server_config) {
+  ESP_LOGW(SERVER_TAG, "Server machine broke, have a nice day");
+  /*
   ESP_LOGI(SERVER_TAG, "Setup server");
   server_config.httpd_handle = NULL;
   ESP_ERROR_CHECK(httpd_start(&server_config.httpd_handle, &server_config.httpd_config));
@@ -26,6 +28,7 @@ esp_err_t setup_server(server_config_t server_config) {
   ESP_ERROR_CHECK(httpd_register_uri_handler(server_config.httpd_handle, &index_html_get));
   ESP_ERROR_CHECK(httpd_register_uri_handler(server_config.httpd_handle, &base_path_get));
   ESP_LOGI(SERVER_TAG, "Server OK");
+  */
   return ESP_OK;
 }
 
