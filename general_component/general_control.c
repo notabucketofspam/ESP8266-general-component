@@ -16,8 +16,8 @@ esp_err_t setup_control(control_config_t control_config) {
   };
   control_output.pin_bit_mask &= ~(control_config.keep_peripheral);
   control_input.pin_bit_mask &= ~(control_config.keep_peripheral);
-  ESP_LOGD(CONTROL_TAG, "pin bit mask out: %x", control_output.pin_bit_mask);
-  ESP_LOGD(CONTROL_TAG, "pin bit mask in: %x", control_input.pin_bit_mask);
+  ESP_LOGW(CONTROL_TAG, "pin bit mask out: %x", control_output.pin_bit_mask);
+  ESP_LOGW(CONTROL_TAG, "pin bit mask in: %x", control_input.pin_bit_mask);
   if (control_output.pin_bit_mask)
     ESP_ERROR_CHECK(gpio_config(&control_output));
   if (control_input.pin_bit_mask)
