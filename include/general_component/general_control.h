@@ -51,7 +51,7 @@ typedef struct {
 } control_config_t;
 
 /* Initialize GPIO control */
-esp_err_t setup_control(control_config_t control_config);
+static esp_err_t setup_control(control_config_t control_config);
 /* Set pin states based on persistent file */
 esp_err_t load_persistent_gpio_state(FILE *file_src);
 

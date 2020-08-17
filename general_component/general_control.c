@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-esp_err_t setup_control(control_config_t control_config) {
+static esp_err_t setup_control(control_config_t control_config) {
   ESP_LOGI(CONTROL_TAG, "Setup control");
   gpio_config_t control_output = {
     .pin_bit_mask = (PIN_BIT_MASK & control_config.pin_mask_output),
