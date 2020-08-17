@@ -29,13 +29,13 @@ extern "C" {
 
 static const char *CONTROL_TAG = "general_control";
 /* Available pins on selected board */
-extern static char s_pin_bit_mask[GPIO_PIN_COUNT];
+extern char s_pin_bit_mask[GPIO_PIN_COUNT];
 /* Configured mode of pins (input / output) */
-extern static char s_pin_mode[GPIO_PIN_COUNT];
+extern char s_pin_mode[GPIO_PIN_COUNT];
 /* Persistent map of pin states */
 static FILE *f_gpio_state;
 /* Pin states stored in memory */
-extern static char s_gpio_state_mem[GPIO_PIN_COUNT];
+extern char s_gpio_state_mem[GPIO_PIN_COUNT];
 /* Control state of pins */
 typedef enum {
   CONTROL_UART_0  = (BIT(1) | BIT(3)),
